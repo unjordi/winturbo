@@ -7,31 +7,35 @@
 
 Optimizador, *debloat* y endurecimiento de privacidad para **Windows 11**: menú interactivo por secciones (**aplicar · desaplicar · no tocar**), reporte por corrida y un modo diagnóstico de **solo lectura**. Pensado para correrse en cada instalación nueva de Windows.
 
-## Requisito: permitir ejecutar scripts
+## Uso sin descarga manual
 
-Una sola vez, en PowerShell:
-
-```powershell
-Set-ExecutionPolicy Unrestricted -Scope CurrentUser
-```
-
-(Alternativa por corrida: lanzar con `-ExecutionPolicy Bypass`. El `irm | iex` de abajo no lo necesita.)
-
-## Uso
-
-**Siempre la última versión, sin guardar nada** — PowerShell **como administrador**:
+Siempre la última versión, sin guardar nada — PowerShell **como administrador**:
 
 ```powershell
 irm https://github.com/unjordi/winturbo/releases/latest/download/winturbo.ps1 | iex
 ```
 
-**Como archivo local (con auto-actualización)** — baja `winturbo.ps1` de la [última release](https://github.com/unjordi/winturbo/releases/latest) y córrelo:
+No requiere tocar la política de ejecución.
+
+## Uso en PowerShell offline (con auto-actualización si hay red)
+
+Baja `winturbo.ps1` de la [última release](https://github.com/unjordi/winturbo/releases/latest) para tenerlo en disco.
+
+Primero, **una sola vez**, permite ejecutar scripts:
+
+```powershell
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+```
+
+(Alternativa por corrida: lanzar con `-ExecutionPolicy Bypass`.)
+
+Luego córrelo:
 
 ```powershell
 .\winturbo.ps1
 ```
 
-Al arrancar revisa si hay una versión más nueva y **te ofrece actualizarse** solo (la baja y se relanza).
+Funciona sin conexión; **si hay red**, al arrancar revisa si hay una versión más nueva y **te ofrece actualizarse** solo (la baja y se relanza).
 
 ## Modos
 
